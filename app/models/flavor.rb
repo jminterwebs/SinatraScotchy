@@ -1,3 +1,3 @@
-class flavor < ActiveRecord::Base
+class Flavor < ActiveRecord::Base
 
 end
