@@ -14,6 +14,11 @@ class UsersController < ApplicationController
       redirect to '/'
     end
 
+  get '/:slug' do
+    @user = User.find_by_slug(params[:slug])
+
+
+  end
 
 
   end
