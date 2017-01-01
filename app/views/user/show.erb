@@ -1,0 +1,20 @@
+<h1>Hello</h1>
+
+  <h3> <%= @user.username %></h3>
+  <h3> <%= @user.email %></h3>
+
+  <a href="/scotch/new">Add a Scotch</a>
+
+  <h1>Your Scotch</h1>
+  <% @user.scotches.
+  each do |scotch| %>
+    <li> <%= scotch.name %></li>
+  <% end %>
+
+
+
+<!-- <form action="/<%= @user.slug %>" method="POST">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete User">
+
+</form> -->

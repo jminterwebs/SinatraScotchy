@@ -13,14 +13,19 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect to '/'
     end
+  end
 
   get '/:slug' do
     @user = User.find_by_slug(params[:slug])
-
-
+    erb :'user/show'
   end
 
-
-  end
+  # delete '/:slug' do
+  #   @user = User.find_by_slug(params[:slug])
+  #
+  #   @user.delete unless current_user.id != @user.id
+  #
+  #   redirect '/'
+  # end
 
 end

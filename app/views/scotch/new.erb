@@ -1,0 +1,23 @@
+<h1>Add a Scotch!</h1>
+
+<form action="/new" method="post">
+  <label for="name">Name:</label>
+  <input type="text">
+
+  <label for="age">Age:</label>
+  <input type="text">
+
+  <label for="abv">Proof %</label>
+  <input type="number">
+<br><br>
+  <!-- <label for="flavors">Add a flavor profile </label>
+  <% Flavor.all.each do |flavor| %>
+    <input type="checkbox" name="scotch[flavor_id]" value="<%= flavor.id %>" id= "flavor_<%= flavor.id %>"
+  <% end %>
+  <br><br>
+  <label for="new_flavor">Add new flavor</label>
+    <textarea name="new_flavor" rows="8" cols="80"></textarea> -->
+
+
+  <input type="submit" value="Add Scotch!">
+</form>
