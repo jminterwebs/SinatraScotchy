@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20161221030650) do
     t.integer "scotch_id"
   end
 
-  create_table "distiller", force: :cascade do |t|
+  create_table "distillers", force: :cascade do |t|
     t.string  "name"
     t.integer "scotch_id"
   end
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20161221030650) do
     t.integer "flavor_id"
   end
 
-  create_table "sctoch", force: :cascade do |t|
+  create_table "scotches", force: :cascade do |t|
     t.string "name"
     t.string "age"
     t.string "abv"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20161221030650) do
 
   create_table "user_scotches", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "sctoch_id"
+    t.integer "scotch_id"
   end
 
   create_table "users", force: :cascade do |t|
