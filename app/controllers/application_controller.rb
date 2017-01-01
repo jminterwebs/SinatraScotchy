@@ -11,6 +11,7 @@ class ApplicationController < Sinatra::Base
 
   get "/" do
     @users = User.all
+    @scotches = Scotch.all
     erb :index
   end
 

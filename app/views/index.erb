@@ -3,7 +3,18 @@
 <% @users.each do |user| %>
   <li>
     <%= user.username %>
-    <%= user.id %>  
+    <%= user.id %>
   </li>
+  <% end %>
+
+
+  <% @scotches.each do |scotch| %>
+    <li>
+    <a href="/scotch/<%= scotch.slug %>"><%= scotch.name %> </a>    
+
+    </li>
+
+
+
 
 <% end %>

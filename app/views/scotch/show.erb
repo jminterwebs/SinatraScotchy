@@ -1,1 +1,9 @@
 <h1>Scotchy Scotch Scotch</h1>
+
+
+<h3> <%= @scotch.name %></h3>
+
+
+<form action="/<%= @scotch.slug %>" method="POST">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete Scotch">
