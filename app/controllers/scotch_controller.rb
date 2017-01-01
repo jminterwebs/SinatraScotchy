@@ -2,7 +2,7 @@ class ScotchController < ApplicationController
 
   get '/scotch' do
 
-    erb :'/scotch/show'
+    erb :'/scotch/index'
   end
 
   get '/scotch/new' do
@@ -16,20 +16,19 @@ class ScotchController < ApplicationController
       Scotch.create(name: params[:name], age: params[:age], abv: params[:abv])
       redirect to '/'
     end
-
-    get '/scotch/:slug' do
-      @scotch = Scotch.find_by_slug(params[:slug])
-      erb :'scotch/show'
-    end
-
-    delete '/scotch/:slug' do
-      @scotch = Scotch.find_by_slug(params[:slug])
-      @scotch.delete
-      redirect '/'
-    end
-
   end
 
+
+ get '/scotch/:slug' do
+    @scotch = Scotch.find_by_slug(params[:slug])
+    erb :'scotch/show'
+  end
+
+  delete '/scotch/:slug' do
+    @scotch = Scotch.find_by_slug(params[:slug])
+    @scotch.delete
+    redirect '/'
+  end   
 
 
 end
