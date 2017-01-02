@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
 
-  get '/signup' do
+  get '/user/signup' do
+    if logged_in?
+      redirect '/scotch'
+    end
     erb :'user/new'
   end
 
@@ -18,7 +21,9 @@ class UsersController < ApplicationController
 
 
   get '/user/login' do
-
+    if logged_in?
+      redirect '/scotch'
+    end
     erb :'user/index'
   end
 
@@ -40,6 +45,11 @@ class UsersController < ApplicationController
       redirect '/login'
     end
   end
+
+  get "/logout" do
+   session.clear
+   redirect "/login"
+ end
 
   # delete '/:slug' do
   #   @user = User.find_by_slug(params[:slug])
