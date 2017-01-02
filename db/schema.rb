@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161221030650) do
+ActiveRecord::Schema.define(version: 20170102040137) do
 
   create_table "comments", force: :cascade do |t|
     t.string  "content"
@@ -34,9 +34,10 @@ ActiveRecord::Schema.define(version: 20161221030650) do
   end
 
   create_table "scotches", force: :cascade do |t|
-    t.string "name"
-    t.string "age"
-    t.string "abv"
+    t.string  "name"
+    t.string  "age"
+    t.string  "abv"
+    t.integer "distiller_id"
   end
 
   create_table "user_scotches", force: :cascade do |t|
