@@ -11,16 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170102040137) do
+ActiveRecord::Schema.define(version: 20170102151652) do
 
   create_table "comments", force: :cascade do |t|
     t.string  "content"
     t.integer "user_id"
-    t.integer "scotch_id"
-  end
-
-  create_table "distillers", force: :cascade do |t|
-    t.string  "name"
     t.integer "scotch_id"
   end
 
@@ -34,10 +29,10 @@ ActiveRecord::Schema.define(version: 20170102040137) do
   end
 
   create_table "scotches", force: :cascade do |t|
-    t.string  "name"
-    t.string  "age"
-    t.string  "abv"
-    t.integer "distiller_id"
+    t.string "name"
+    t.string "age"
+    t.string "abv"
+    t.string "region"
   end
 
   create_table "user_scotches", force: :cascade do |t|

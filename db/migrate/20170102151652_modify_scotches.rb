@@ -1,5 +1,5 @@
 class ModifyScotches < ActiveRecord::Migration
   def change
-    add_column :scotches, :distiller_id, :integer
+    add_column :scotches, :region, :string
   end
 end
