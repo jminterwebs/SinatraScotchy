@@ -1,2 +1,0 @@
-class DistillerController < ApplicationController
-end
