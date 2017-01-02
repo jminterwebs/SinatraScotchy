@@ -1,0 +1,8 @@
+<h1>Pick A Scotch to add</h1>
+
+
+<% @scotches.each do |scotch| %>
+<a href="/scotch/<%= scotch.slug %>">
+<li> Name: <%= scotch.name %> | Age: <%= scotch.age %> | ABV <%= scotch.abv %> </li>
+</a>
+<% end %>

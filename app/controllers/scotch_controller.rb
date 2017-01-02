@@ -1,8 +1,8 @@
 class ScotchController < ApplicationController
 
   get '/scotch' do
-
-    erb :'/scotch/index'
+    @scotches = Scotch.all
+    erb :'scotch/index'
   end
 
   get '/scotch/new' do
@@ -28,7 +28,7 @@ class ScotchController < ApplicationController
     @scotch = Scotch.find_by_slug(params[:slug])
     @scotch.delete
     redirect '/'
-  end   
+  end
 
 
 end
