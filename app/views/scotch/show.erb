@@ -8,8 +8,8 @@
 
 People who like me
 
-<% @scotch.user_scotches.each do |user|  %>
-  <% user.methods%>
+<% @scotch.users.each do |user| %>
+  <%= user.username %>
 <% end %>
 
 <form action="/scotch/<%= @scotch.slug %>/add" method="POST">

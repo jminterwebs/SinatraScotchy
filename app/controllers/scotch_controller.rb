@@ -27,7 +27,8 @@ class ScotchController < ApplicationController
   post '/scotch/:slug/add' do
     @scotch = Scotch.find_by_slug(params[:slug])
     @user = User.find_by_id(current_user.id)
-    @scotch.user_ids << @user.id
+
+    @scotch.users << @user
 
     @scotch.save
 
