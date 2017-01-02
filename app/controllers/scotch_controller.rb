@@ -24,9 +24,13 @@ class ScotchController < ApplicationController
     erb :'scotch/show'
   end
 
-  delete '/scotch/:slug' do
+  post '/scotch/:slug/add' do
     @scotch = Scotch.find_by_slug(params[:slug])
-    @scotch.delete
+    @scotch.user_ids = current_user.id
+
+
+    @scotch.save
+
     redirect '/'
   end
 

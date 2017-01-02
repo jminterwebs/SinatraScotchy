@@ -7,6 +7,6 @@
 <h3> <%= @scotch.region %> </h3>
 
 
-<form action="/<%= @scotch.slug %>" method="POST">
-  <input id="hidden" type="hidden" name="_method" value="delete">
-  <input type="submit" value="Delete Scotch">
+<form action="/scotch/<%= @scotch.slug %>/add" method="POST">
+  <input type="submit" value="Add Scotch">
+</form>
