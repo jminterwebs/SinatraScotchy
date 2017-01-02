@@ -9,6 +9,5 @@ use Rack::MethodOverride
 use UsersController
 use ScotchController
 use FlavorController
-use DistillerController
 use CommentController
 run ApplicationController
