@@ -10,7 +10,8 @@
   <h1>Your Scotch</h1>
   <% @user.scotches.
   each do |scotch| %>
-    <li> <%= scotch.name %></li>
+  <a href="/scotch/<%= scotch.slug %> ">
+    <li> <%= scotch.name %></li></a>
   <% end %>
 
 
