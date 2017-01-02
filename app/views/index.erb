@@ -1,9 +1,10 @@
 <h1>Hello!!!!</h1>
 
+<%= current_user.id %>
 <% @users.each do |user| %>
 
   <li>
-    <a href="/user/<%= user.slug %>">   <%= user.username %></a> 
+    <a href="/user/<%= user.slug %>">   <%= user.username %></a>
     </li>
   <% end %>
 

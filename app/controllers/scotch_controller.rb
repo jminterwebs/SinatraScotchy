@@ -26,10 +26,11 @@ class ScotchController < ApplicationController
 
   post '/scotch/:slug/add' do
     @scotch = Scotch.find_by_slug(params[:slug])
-    @scotch.user_ids = current_user.id
-
+    @user = User.find_by_id(current_user.id)
+    @scotch.user_ids << @user.id
 
     @scotch.save
+
 
     redirect '/'
   end

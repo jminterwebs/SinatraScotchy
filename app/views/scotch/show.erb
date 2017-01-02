@@ -6,6 +6,11 @@
 <h3> <%= @scotch.abv %> proof</h3>
 <h3> <%= @scotch.region %> </h3>
 
+People who like me
+
+<% @scotch.user_scotches.each do |user|  %>
+  <% user.methods%>
+<% end %>
 
 <form action="/scotch/<%= @scotch.slug %>/add" method="POST">
   <input type="submit" value="Add Scotch">
