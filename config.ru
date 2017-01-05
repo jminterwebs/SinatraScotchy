@@ -8,6 +8,5 @@ end
 use Rack::MethodOverride
 use UsersController
 use ScotchController
-use FlavorController
 use CommentController
 run ApplicationController

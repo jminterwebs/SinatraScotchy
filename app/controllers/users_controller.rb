@@ -50,23 +50,23 @@ class UsersController < ApplicationController
     end
   end
 
-  get '/user/remove/:slug' do
-    # @scotch = Scotch.find_by_slug(params[:slug])
-    # @user = User.find_by_id(current_user.id)
-    #
-    #
-    # "#{@user.scotches.include?(@scotch)}"
-
-  end
-
-
-  delete '/user/:slug' do
+  patch '/user/remove/:slug/:scotch_slug' do
+    @scotch = Scotch.find_by_slug(params[:scotch_slug])
     @user = User.find_by_slug(params[:slug])
 
-    @user.delete unless current_user.id != @user.id
+    @user.scotches.delete(@scotch)
 
-    redirect '/'
+
   end
+
+
+  # delete '/user/:slug' do
+  #   @user = User.find_by_slug(params[:slug])
+  #
+  #   @user.delete unless current_user.id != @user.id
+  #
+  #   redirect '/'
+  # end
 
 
 
