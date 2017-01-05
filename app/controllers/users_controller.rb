@@ -56,6 +56,7 @@ class UsersController < ApplicationController
 
     @user.scotches.delete(@scotch)
 
+    redirect '/'
 
   end
 
