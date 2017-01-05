@@ -1,3 +1,5 @@
+
+
 class UsersController < ApplicationController
 
   get '/user/logout' do
@@ -48,6 +50,14 @@ class UsersController < ApplicationController
     end
   end
 
+  get '/user/remove/:slug' do
+    # @scotch = Scotch.find_by_slug(params[:slug])
+    # @user = User.find_by_id(current_user.id)
+    #
+    #
+    # "#{@user.scotches.include?(@scotch)}"
+
+  end
 
 
   delete '/user/:slug' do

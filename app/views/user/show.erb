@@ -11,7 +11,7 @@
   <% @user.scotches.
   each do |scotch| %>
   <a href="/scotch/<%= scotch.slug %> ">
-    <li> <%= scotch.name %></li></a>
+    <li> <%= scotch.name %></li>   </a><form action="/user/remove/<%= scotch.slug %>"><input type="submit" value= "Remove from favorites"></form>
   <% end %>
 
 
