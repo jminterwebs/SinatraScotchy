@@ -11,7 +11,8 @@ class UsersController < ApplicationController
 
   get '/user/signup' do
     if logged_in?
-      redirect '/scotch'
+      redirect to "/user/#{current_user.slug}"
+      # redirect '/scotch'
     end
     erb :'user/new'
   end
@@ -29,7 +30,7 @@ class UsersController < ApplicationController
 
   get '/user/login' do
     if logged_in?
-      redirect '/scotch'
+      redirect to "/user/#{current_user.slug}"
     end
     erb :'user/index'
   end
