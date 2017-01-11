@@ -43,9 +43,10 @@ class ScotchController < ApplicationController
     end
     @scotch.save
 
-
     redirect to "/user/#{@user.slug}"
   end
+
+  
 
 
 end
