@@ -1,4 +1,8 @@
+require 'rack-flash'
+
+
 class ScotchController < ApplicationController
+  use Rack::Flash
 
   get '/scotch' do
     @scotches = Scotch.all
@@ -30,12 +34,15 @@ class ScotchController < ApplicationController
     @scotch = Scotch.find_by_slug(params[:slug])
     @user = User.find_by_id(current_user.id)
 
-    @scotch.users << @user
+    if @user.scotches.include?(@scotch)
 
+    else
+      @scotch.users << @user
+    end
     @scotch.save
 
 
-    redirect '/'
+    redirect to "/user/#{@user.slug}"
   end
 
 
