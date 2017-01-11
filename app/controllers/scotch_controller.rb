@@ -35,6 +35,8 @@ class ScotchController < ApplicationController
     @user = User.find_by_id(current_user.id)
 
     if @user.scotches.include?(@scotch)
+      flash[:message] = "Scotch already added!"
+      redirect to "/user/#{@user.slug}"
 
     else
       @scotch.users << @user
