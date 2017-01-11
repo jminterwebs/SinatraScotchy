@@ -1,7 +1,8 @@
+require 'rack-flash'
 
 
 class UsersController < ApplicationController
-
+  use Rack::Flash
   get '/user/logout' do
       if logged_in?
         session.clear
@@ -55,9 +56,11 @@ class UsersController < ApplicationController
     @scotch = Scotch.find_by_slug(params[:scotch_slug])
     @user = User.find_by_slug(params[:slug])
 
-    @user.scotches.delete(@scotch)
-
-    redirect '/'
+    if current_user.id == @user.id
+      @user.scotches.delete(@scotch)
+    end
+    flash[:message] = "Please remove scotches from your profile only"
+    redirect "/user/#{current_user.slug}"
 
   end
 
