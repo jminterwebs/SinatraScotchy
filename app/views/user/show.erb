@@ -10,17 +10,14 @@
   <h1>Your Scotch</h1>
   <% @user.scotches.
   each do |scotch| %>
-  <a href="/scotch/<%= scotch.slug %> ">
-    <li> <%= scotch.name %></li> <form action="/user/remove/<%= @user.slug %>/<%= scotch.slug %>" method="post">
+
+    <li> <a href="/scotch/<%= scotch.slug %> "> <%= scotch.name %> </a>
+      <form action="/user/remove/<%= @user.slug %>/<%= scotch.slug %>" method="post">
         <input id="hidden" type="hidden" name="_method" value="patch">
         <input type="submit" value="Remove from Favorites">
-    </form>
+    </form> </li>
   <% end %>
 
 
 
-<form action="/user/<%= @user.slug %>" method="POST">
-  <input id="hidden" type="hidden" name="_method" value="delete">
-  <input type="submit" value="Delete User">
-
-</form>
+  <a href="/user/logout">log out</a>
