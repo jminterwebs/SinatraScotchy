@@ -12,10 +12,11 @@ class UsersController < ApplicationController
 
   get '/user/signup' do
     if logged_in?
-      redirect to "/user/#{current_user.slug}"
-      # redirect '/scotch'
+     redirect to "/user/#{current_user.slug}"
+
+    else
+     erb :'user/new'
     end
-    erb :'user/new'
   end
 
   post '/signup' do
