@@ -18,7 +18,7 @@ class ScotchController < ApplicationController
     if params[:name] == "" || params[:age] == "" || params[:abv] == ""
       redirect to "/signup"
     else
-      @scotch  = Scotch.create(name: params[:name], age: params[:age], abv: params[:abv], region: params[:region])
+      @scotch  = Scotch.create(name: params[:name], age: params[:age], abv: params[:abv])
       @scotch.users << @user
       redirect to "/user/#{current_user.slug}"
     end
@@ -47,6 +47,8 @@ class ScotchController < ApplicationController
   end
 
   
+
+
 
 
 end

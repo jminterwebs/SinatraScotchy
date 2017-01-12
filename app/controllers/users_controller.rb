@@ -13,7 +13,6 @@ class UsersController < ApplicationController
   get '/user/signup' do
     if logged_in?
      redirect to "/user/#{current_user.slug}"
-
     else
      erb :'user/new'
     end
@@ -66,13 +65,11 @@ class UsersController < ApplicationController
   end
 
 
-  # delete '/user/:slug' do
-  #   @user = User.find_by_slug(params[:slug])
-  #
-  #   @user.delete unless current_user.id != @user.id
-  #
-  #   redirect '/'
-  # end
+  delete '/user/:slug' do
+    @user = User.find_by_slug(params[:slug])
+    @user.delete 
+    redirect '/'
+  end
 
 
 
