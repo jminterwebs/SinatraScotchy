@@ -46,7 +46,7 @@ class ScotchController < ApplicationController
     redirect to "/user/#{@user.slug}"
   end
 
-  
+
 
 
 

@@ -48,7 +48,7 @@ class UsersController < ApplicationController
 
       redirect to "/user/#{@user.slug}"
     else
-      redirect '/login'
+      redirect '/user/login'
     end
   end
 
@@ -58,8 +58,9 @@ class UsersController < ApplicationController
 
     if current_user.id == @user.id
       @user.scotches.delete(@scotch)
+    else
+      flash[:message] = "Please remove scotches from your profile only"
     end
-    flash[:message] = "Please remove scotches from your profile only"
     redirect "/user/#{current_user.slug}"
 
   end
@@ -67,7 +68,7 @@ class UsersController < ApplicationController
 
   delete '/user/:slug' do
     @user = User.find_by_slug(params[:slug])
-    @user.delete 
+    @user.delete
     redirect '/'
   end
 
