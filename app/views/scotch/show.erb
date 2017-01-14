@@ -7,8 +7,17 @@
 <h3> <%= @scotch.age %> Year</h3>
 <h3> <%= @scotch.abv %> proof</h3>
 <h3> <%= @scotch.region %> </h3>
+<h3> <%= @scotch.comments %> </h3>
 
-<a href="/scotch/:slug/comments">Add a comment</a>
+<% @scotch.comments.each do |comment|%>
+  <%= comment.content %>
+  <%= comment.user.username %>
+  <%= comment.user_id %>
+
+<% end %>
+
+
+<a href="/scotch/<%= @scotch.slug %>/comments">Add a comment</a>
 <br>
 
 People who like me
