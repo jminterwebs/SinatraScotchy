@@ -1,28 +1,9 @@
-<h1>Hello!!!!</h1>
+<h4><% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
 
+<h1>Welcome to Scotchy!</h1>
+</h4>
   <a href="/user/login">Log In </a>
   <br>
   <a href="/user/signup">Signup</a>
-
-
-
-
-<h1>Testing</h1>
-<% @users.each do |user| %>
-
-  <li>
-    <a href="/user/<%= user.slug %>">   <%= user.username %></a>
-    </li>
-  <% end %>
-
-
-  <% @scotches.each do |scotch| %>
-    <li>
-    <a href="/scotch/<%= scotch.slug %>"><%= scotch.name %> </a>
-
-    </li>
-
-
-
-
-<% end %>
