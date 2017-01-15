@@ -1,8 +1,11 @@
 require 'rack-flash'
+require 'pry'
 
 
 class UsersController < ApplicationController
   use Rack::Flash
+
+
   get '/user/logout' do
       if logged_in?
         session.clear
@@ -30,6 +33,7 @@ class UsersController < ApplicationController
   end
 
   get '/user/login' do
+
     if logged_in?
       redirect to "/user/#{current_user.slug}"
     end
@@ -66,10 +70,18 @@ class UsersController < ApplicationController
   end
 
 
-  delete '/user/:slug' do
-    @user = User.find_by_slug(params[:slug])
-    @user.delete
-    redirect '/'
+  delete '/user/delete/:slug' do
+  @user = User.find_by_slug(params[:slug])
+
+    if current_user.id == @user.id
+      @user.delete
+      session.clear
+      redirect '/'
+    else
+      flash[:message] = "Please do not try to delete other profiles"
+      redirect "/user/#{current_user.slug}"
+    end
+
   end
 
 
