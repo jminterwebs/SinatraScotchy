@@ -28,12 +28,11 @@ class UsersController < ApplicationController
       User.create(username: params[:username], email: params[:email], password: params[:password])
       @user = User.find_by(username: params[:username])
       session[:user_id] = @user.id
-      redirect to '/'
+      redirect to "/user/#{current_user.slug}"
     end
   end
 
   get '/user/login' do
-
     if logged_in?
       redirect to "/user/#{current_user.slug}"
     end
@@ -71,19 +70,19 @@ class UsersController < ApplicationController
 
 
   delete '/user/delete/:slug' do
-  @user = User.find_by_slug(params[:slug])
-
-    if current_user.id == @user.id
-      @user.delete
-      session.clear
-      redirect '/'
+    @user = User.find_by_slug(params[:slug])
+    if logged_in?
+      if current_user.id == @user.id
+        @user.delete
+        session.clear
+        redirect '/'
+      else
+        flash[:message] = "Please do not try to delete other profiles"
+        redirect "/user/#{current_user.slug}"
+      end
     else
-      flash[:message] = "Please do not try to delete other profiles"
-      redirect "/user/#{current_user.slug}"
+      flash[:message] = "You are not logged in. Please log in or create an account!"
+      redirect '/'
     end
-
   end
-
-
-
 end
