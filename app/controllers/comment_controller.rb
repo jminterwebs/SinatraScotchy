@@ -14,12 +14,9 @@ class CommentController < ApplicationController
 
   post '/scotch/:slug/comments' do
     @scotch = Scotch.find_by_slug(params[:slug])
-    Comment.create(content: params[:comment], scotch_id: @scotch.id, user_id: current_user.id)
+    Comment.create(content: params[:comment], scotch_id: @scotch.id, user_id: current_user.id, commenter: current_user.username)
 
     redirect to  "/scotch/#{@scotch.slug}"
   end
 
 end
-
-
-# if find_by(user_id: current_user.id, scotch_id: @scotch.id).nil?  redirect_to new_comment_page`
