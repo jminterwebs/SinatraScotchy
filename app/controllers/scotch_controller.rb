@@ -1,5 +1,5 @@
 require 'rack-flash'
-
+require 'pry'
 
 class ScotchController < ApplicationController
   use Rack::Flash
@@ -26,7 +26,7 @@ class ScotchController < ApplicationController
 
 
  get '/scotch/:slug' do
-    @scotch = Scotch.find_by_slug(params[:slug])
+     @scotch = Scotch.find_by_slug(params[:slug])
     erb :'scotch/show'
   end
 

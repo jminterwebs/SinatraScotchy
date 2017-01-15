@@ -1,18 +1,19 @@
 <% if flash.has?(:message) %>
   <%= flash[:message] %>
 <% end %>
-<h1>Scotchy Scotch Scotch</h1>
 
-<h3> <%= @scotch.name %></h3>
+
+<h1> <%= @scotch.name %></h1>
 <h3> <%= @scotch.age %> Year</h3>
 <h3> <%= @scotch.abv %> proof</h3>
 <h3> <%= @scotch.region %> </h3>
-<h3> <%= @scotch.comments %> </h3>
 
-<% @scotch.comments.each do |comment|%>
+
+ <% @scotch.comments.each do |comment|%>
   <%= comment.content %>
-  <%= comment.user.username %>
-  <%= comment.user_id %>
+  <%= comment.commenter %>
+
+
 
 <% end %>
 
