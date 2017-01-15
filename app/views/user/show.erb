@@ -2,6 +2,8 @@
   <%= flash[:message] %>
 <% end %>
 
+
+
   <h3> <%= @user.username %></h3>
 
 
@@ -25,7 +27,7 @@
 
   <a href="/user/logout">log out</a>
 
-  
+
   <form action="/user/delete/<%= @user.slug %>" method="post">
     <input id="hidden" type="hidden" name="_method" value="delete">
     <input type="submit" value="Delete Profile">
