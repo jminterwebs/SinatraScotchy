@@ -6,6 +6,11 @@ class Scotch < ActiveRecord::Base
   has_many :scotch_flavors
   has_many :flavors, through: :scotch_flavors
 
+  validates :name, :age, :abv,  presence: true
+  validates :name,  :uniqueness =>{:scope =>[:age, :abv]}
+
+
+
 
   def slug
     name.downcase.gsub(" ", "-")
