@@ -1,6 +1,4 @@
-<% if flash.has?(:message) %>
-  <%= flash[:message] %>
-<% end %>
+
 
 
 
@@ -9,15 +7,15 @@
 
 
 
-  <a href="/scotch">Pick a Scotch</a>
-  <a href="/scotch/new">Add your own</a>
+  <a href="/scotches">Pick a Scotch</a>
+  <a href="/scotches/new">Add your own</a>
 
 
   <h1>Your Scotch</h1>
   <% @user.scotches.
   each do |scotch| %>
 
-    <li> <a href="/scotch/<%= scotch.slug %> "> <%= scotch.name %> </a>
+    <li> <a href="/scotches/<%= scotch.slug %> "> <%= scotch.name %> </a>
       <form action="/user/remove/<%= @user.slug %>/<%= scotch.slug %>" method="post">
         <input id="hidden" type="hidden" name="_method" value="patch">
         <input type="submit" value="Remove from Favorites">
