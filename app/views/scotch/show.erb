@@ -18,7 +18,7 @@
 <% end %>
 
 
-<a href="/scotch/<%= @scotch.slug %>/comments">Add a comment</a>
+<a href="/scotches/<%= @scotch.slug %>/comments">Add a comment</a>
 <br>
 
 People who like me
@@ -27,6 +27,6 @@ People who like me
   <%= user.username %>
 <% end %>
 
-<form action="/scotch/<%= @scotch.slug %>/add" method="POST">
+<form action="/scotches/<%= @scotch.slug %>/add" method="POST">
   <input type="submit" value="Add Scotch">
 </form>
