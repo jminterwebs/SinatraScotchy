@@ -4,33 +4,39 @@ require 'pry'
 class ScotchController < ApplicationController
   use Rack::Flash
 
-  get '/scotch' do
+  get '/scotches' do
     @scotches = Scotch.all
     erb :'scotch/index'
   end
 
-  get '/scotch/new' do
+  get '/scotches/new' do
     erb :'scotch/new'
   end
-
-  post '/new' do
-    @user = User.find_by_id(current_user.id)
-    if params[:name] == "" || params[:age] == "" || params[:abv] == ""
-      redirect to "/signup"
+# fix validations
+# secure logged_ins
+# fix comments delete rotues
+  post '/scotches' do
+    @scotch = Scotch.new(params[:name], params[:age], params[:abv])
+    if logged_in?
+      if @scotch.errors.full_messages
+        flash[:message] = @scotch.errors.full_messages
+        redirect to "/scotches/new"
+      else
+        @scotch = current_user.scotches.create(name: params[:name], age: params[:age], abv: params[:abv], region: params[:region])
+        redirect to "/user/#{current_user.slug}"
+      end
     else
-      @scotch  = Scotch.create(name: params[:name], age: params[:age], abv: params[:abv], region: params[:region])
-      @scotch.users << @user
-      redirect to "/user/#{current_user.slug}"
+      redirect to '/signup'
     end
   end
 
 
- get '/scotch/:slug' do
+ get '/scotches/:slug' do
      @scotch = Scotch.find_by_slug(params[:slug])
     erb :'scotch/show'
   end
 
-  post '/scotch/:slug/add' do
+  post '/scotches/:slug/add' do
     @scotch = Scotch.find_by_slug(params[:slug])
     @user = User.find_by_id(current_user.id)
 
