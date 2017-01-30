@@ -14,6 +14,7 @@ class UsersController < ApplicationController
   end
 
   get '/user/signup' do
+
     if logged_in?
      redirect to "/user/#{current_user.slug}"
     else
@@ -22,6 +23,7 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
+
     @user = User.new(username: params[:username], email: params[:email], password: params[:password])
     if @user.save
         session[:user_id] = @user.id
@@ -73,7 +75,7 @@ class UsersController < ApplicationController
     @user = User.find_by_slug(params[:slug])
     if logged_in?
       if current_user.id == @user.id
-        @user.delete
+        @user.destroy
         session.clear
         redirect '/'
       else
