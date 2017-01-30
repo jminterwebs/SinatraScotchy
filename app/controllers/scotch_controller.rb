@@ -23,8 +23,8 @@ class ScotchController < ApplicationController
         current_user.scotches << @scotch
         redirect to "/user/#{current_user.slug}"
       else
-        flash[:message] = @scotch.errors.full_messages
-        redirect to "/scotches/new"
+        flash[:message] = "#{@scotch.errors.full_messages} Scotch was already picked added by other users"
+        redirect to "/scotches"
       end
     else
       redirect to '/signup'
