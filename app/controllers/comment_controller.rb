@@ -14,10 +14,13 @@ class CommentController < ApplicationController
   end
 
   post '/scotches/:slug/comments' do
-    @scotch = Scotch.find_by_slug(params[:slug])
-    Comment.create(content: params[:comment], scotch_id: @scotch.id, user_id: current_user.id)
-
-    redirect to  "/scotches/#{@scotch.slug}"
+    if logged_in?
+      @scotch = Scotch.find_by_slug(params[:slug])
+      Comment.create(content: params[:comment], scotch_id: @scotch.id, user_id: current_user.id)
+      redirect to  "/scotches/#{@scotch.slug}"
+    else
+      redirect to '/'
+    end
   end
 
 end
