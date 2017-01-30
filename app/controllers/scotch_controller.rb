@@ -16,14 +16,15 @@ class ScotchController < ApplicationController
 # secure logged_ins
 # fix comments delete rotues
   post '/scotches' do
-    @scotch = Scotch.new(params[:name], params[:age], params[:abv])
+    @scotch = Scotch.new(name: params[:name], age: params[:age], abv: params[:abv], region: params[:region])
+
     if logged_in?
-      if @scotch.errors.full_messages
+      if @scotch.save
+        current_user.scotches << @scotch
+        redirect to "/user/#{current_user.slug}"
+      else
         flash[:message] = @scotch.errors.full_messages
         redirect to "/scotches/new"
-      else
-        @scotch = current_user.scotches.create(name: params[:name], age: params[:age], abv: params[:abv], region: params[:region])
-        redirect to "/user/#{current_user.slug}"
       end
     else
       redirect to '/signup'
