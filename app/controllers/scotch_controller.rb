@@ -19,11 +19,10 @@ class ScotchController < ApplicationController
 
   post '/scotches' do
     if logged_in?
-      @scotch = Scotch.new(name: params[:name], age: params[:age], abv: params[:abv], region: params[:region])
+      @scotch = current_user.scotches.build(name: params[:name], age: params[:age], abv: params[:abv], region: params[:region])
 
 
       if @scotch.save
-        current_user.scotches << @scotch
         redirect to "/user/#{current_user.slug}"
       else
         flash[:message] = "#{@scotch.errors.full_messages} Scotch was already picked added by other users"
@@ -36,31 +35,25 @@ class ScotchController < ApplicationController
 
 
   get '/scotches/:slug' do
-    if logged_in?
-      @scotch = Scotch.find_by_slug(params[:slug])
-      erb :'scotch/show'
-    else
-      redirect to '/'
-    end
+    if_logged_in_go_home
+    @scotch = Scotch.find_by_slug(params[:slug])
+    erb :'scotch/show'
   end
 
   post '/scotches/:slug/add' do
-    if logged_in?
-      @scotch = Scotch.find_by_slug(params[:slug])
-      @user = User.find_by_id(current_user.id)
+    if_not_logged_in_go_home
+    @scotch = Scotch.find_by_slug(params[:slug])
+    @user = User.find_by_id(current_user.id)
 
-      if @user.scotches.include?(@scotch)
-        flash[:message] = "Scotch already added!"
-        redirect to "/user/#{@user.slug}"
-
-      else
-        @scotch.users << @user
-      end
-      @scotch.save
+    if @user.scotches.include?(@scotch)
+      flash[:message] = "Scotch already added!"
       redirect to "/user/#{@user.slug}"
+
     else
-      redirect to '/'
+      @scotch.users << @user
     end
+    @scotch.save
+    redirect to "/user/#{@user.slug}"
   end
 
 

@@ -26,5 +26,8 @@ class ApplicationController < Sinatra::Base
         @current_user ||= User.find(session[:user_id]) if session[:user_id] != nil
       end
 
+      def if_not_logged_in_go_home?
+        redirect to '/' if !logged_in?
+      end
   end
 end
