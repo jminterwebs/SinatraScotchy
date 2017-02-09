@@ -47,6 +47,8 @@ class UsersController < ApplicationController
       erb :'user/show'
     else
       redirect '/'
+
+      
     end
   end
 
